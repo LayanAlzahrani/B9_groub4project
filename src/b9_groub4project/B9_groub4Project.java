@@ -7,11 +7,7 @@ public class B9_groub4Project {
 
     public static void main(String[] args) {
 
-        int BPrice = 20;
-        int PPrice = 15;
-        int DPrice = 25;
-        int GPrice = 30;
-        int SPrice = 30;
+        int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
 
         while (true) {
 
@@ -47,9 +43,7 @@ public class B9_groub4Project {
                 System.out.print("Enter your Email: ");
                 userEmail = in.nextLine();
             }
-
         }
-
     }
 
     public static boolean isCorrectMobile(String mobileNum) {
@@ -101,7 +95,6 @@ public class B9_groub4Project {
                     System.out.println("Nothing Selected. See you again.");
                     System.exit(0);
                 }
-
         }
     }
 
