@@ -1,5 +1,6 @@
 package b9_groub4project;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.*;
 
@@ -44,7 +45,7 @@ public class B9_groub4Project {
         String mobileNum = "";
 
         while (!isCorrectMobile(mobileNum)) {
-            System.out.print("Enter your Mobile Number (must be 10 digits and start with 0): ");
+            System.out.print("Enter your Mobile Number (must be start with 05): ");
             mobileNum = in.next();
         }
 
@@ -53,9 +54,30 @@ public class B9_groub4Project {
             System.out.print("Enter your Email: ");
             userEmail = in.nextLine();
         }
-
+selectDate(); 
     }
-
+public static void selectDate() {
+    Scanner input = new Scanner(System.in);
+    ArrayList<String> dateList = new ArrayList<>();
+    dateList.add("01/03/2023  Wednesday ");
+    dateList.add("02/03/2023  Thursday ");
+    dateList.add("03/03/2023  Friday ");
+    dateList.add("03/03/2023  Saturday ");
+    dateList.add("05/03/2023  Sunday "); 
+    dateList.add("06/03/2023  Monday ");
+    dateList.add("07/03/2023  Tuesday ");
+    System.out.println("Select the date of the event:");
+    for (int i = 0; i < dateList.size(); i++) {
+        System.out.println((i + 1) + ". " + dateList.get(i));
+    }
+    int selection = input.nextInt();
+    while (selection < 1 || selection > dateList.size()) {
+        System.out.println("Invalid selection. Please choose a valid option.");
+        selection = input.nextInt();
+    }
+    String selectedDate = dateList.get(selection - 1);
+    System.out.println("You selected: " + selectedDate);
+}
     public static boolean isCorrectMobile(String mobileNum) {
         return mobileNum.startsWith("05") && mobileNum.length() == 10;
     }
