@@ -8,8 +8,9 @@ public class B9_groub4Project {
     public static void main(String[] args) {
 
         int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
+        boolean flag = true;
 
-        while (true) {
+        while (flag) {
 
             System.out.println("-----------------------------------------------");
             System.out.println("\tWelcome to STLA World");
@@ -23,27 +24,36 @@ public class B9_groub4Project {
             System.out.println("E: Confirm and Exit");
 
             System.out.println("-----------------------------------------------");
+            Scanner input = new Scanner(System.in);
+            System.out.print("Enter your selection: ");
+            String select = input.next().toUpperCase();
 
-            selectEvent();
-
-            Scanner in = new Scanner(System.in);
-
-            System.out.print("Enter your name: ");
-            String userName = in.nextLine();
-
-            String mobileNum = "";
-
-            while (!isCorrectMobile(mobileNum)) {
-                System.out.print("Enter your Mobile Number (must be 10 digits and start with 0): ");
-                mobileNum = in.next();
+            if (select.equalsIgnoreCase("E")) {
+                flag = false;
+            } else {
+                selectEvent(select);
             }
 
-            String userEmail = "";
-            while (!isCorrectEmail(userEmail)) {
-                System.out.print("Enter your Email: ");
-                userEmail = in.nextLine();
-            }
         }
+
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Enter your name: ");
+        String userName = in.nextLine();
+
+        String mobileNum = "";
+
+        while (!isCorrectMobile(mobileNum)) {
+            System.out.print("Enter your Mobile Number (must be 10 digits and start with 0): ");
+            mobileNum = in.next();
+        }
+
+        String userEmail = "";
+        while (!isCorrectEmail(userEmail)) {
+            System.out.print("Enter your Email: ");
+            userEmail = in.nextLine();
+        }
+
     }
 
     public static boolean isCorrectMobile(String mobileNum) {
@@ -57,18 +67,12 @@ public class B9_groub4Project {
         return matcher.matches();
     }
 
-    public static void selectEvent() {
+    public static void selectEvent(String select) {
 
         Scanner input = new Scanner(System.in);
-        System.out.print("Enter your selection: ");
-        String select = input.next().toUpperCase();
-
-        int BQua = 0;
-        int PQua = 0;
-        int DQua = 0;
-        int SQua = 0;
-        int GQua = 0;
-
+        
+        int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0;
+        
         switch (select) {
             case "B":
                 System.out.print("Quantity: ");
