@@ -101,5 +101,11 @@ public class B9_groub4Project {
                 }
         }
     }
+    
+    public static void generateTicket(String userName) {
+        
+        
+        
+    }
 
 }
