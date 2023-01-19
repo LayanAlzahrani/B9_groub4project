@@ -6,9 +6,11 @@ import java.util.regex.*;
 
 public class B9_groub4Project {
 
+    static int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
+    static int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0 ,total = 0;
     public static void main(String[] args) {
 
-        int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
+        
         boolean flag = true;
 
         while (flag) {
@@ -34,9 +36,9 @@ public class B9_groub4Project {
             } else {
                 selectEvent(select);
             }
-
+         
         }
-
+        
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter your name: ");
@@ -44,7 +46,7 @@ public class B9_groub4Project {
 
         String mobileNum = "";
 
-        while (!isCorrectMobile(mobileNum)) {
+       while (!isCorrectMobile(mobileNum)) {
             System.out.print("Enter your Mobile Number (must be start with 05): ");
             mobileNum = in.next();
         }
@@ -54,7 +56,21 @@ public class B9_groub4Project {
             System.out.print("Enter your Email: ");
             userEmail = in.nextLine();
         }
-selectDate(); 
+        selectDate(); 
+        price();
+        invoice();
+        
+    }
+
+    public static boolean isCorrectMobile(String mobileNum) {
+        return mobileNum.startsWith("05") && mobileNum.length() == 10;
+    }
+
+    public static boolean isCorrectEmail(String userEmail) {
+        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(userEmail);
+        return matcher.matches();
     }
 public static void selectDate() {
     Scanner input = new Scanner(System.in);
@@ -78,22 +94,9 @@ public static void selectDate() {
     String selectedDate = dateList.get(selection - 1);
     System.out.println("You selected: " + selectedDate);
 }
-    public static boolean isCorrectMobile(String mobileNum) {
-        return mobileNum.startsWith("05") && mobileNum.length() == 10;
-    }
-
-    public static boolean isCorrectEmail(String userEmail) {
-        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(userEmail);
-        return matcher.matches();
-    }
-
     public static void selectEvent(String select) {
 
         Scanner input = new Scanner(System.in);
-        
-        int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0;
         
         switch (select) {
             case "B":
@@ -123,7 +126,44 @@ public static void selectDate() {
                 }
         }
     }
-    
+    public static void price(){
+        int price=0;
+        if (BQua != 0 ){
+            price = BQua * BPrice;
+            total+= price;
+        }
+        if (PQua != 0 ){
+            price = PQua * PPrice;
+            total+= price;
+        }
+        if (SQua != 0 ){
+            price = SQua * SPrice;
+            total+= price;
+        }
+        if (GQua != 0 ){
+            price = GQua * GPrice;
+            total+= price;
+        }
+        if (DQua != 0 ){
+            price = DQua * DPrice;
+            total+= price;
+        }
+        else {
+            total+= 0;
+        }
+        
+        
+    }
+    public static void invoice(){
+        System.out.println("");
+        System.out.println("-----------------------------------------------");
+        System.out.println("Subtotal: "+ total );
+        double tax = total * 0.15;
+        System.out.println("Tax: " + tax);
+        double totalPrice = total+ tax;
+        System.out.println("Total Price: "+ totalPrice);
+        System.out.println("-----------------------------------------------");
+    }
     public static void generateTicket(String userName) {
         
         
