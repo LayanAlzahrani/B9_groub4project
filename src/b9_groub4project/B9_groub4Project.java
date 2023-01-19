@@ -161,7 +161,6 @@ public class B9_groub4Project {
         } else {
             total += 0;
         }
-
     }
 
     public static void invoice() {
