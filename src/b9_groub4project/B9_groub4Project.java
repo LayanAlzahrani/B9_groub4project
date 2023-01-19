@@ -62,7 +62,7 @@ public class B9_groub4Project {
         }
 
         price();
-        invoice();
+        invoice(userName);
 
     }
 
@@ -163,16 +163,17 @@ public class B9_groub4Project {
         }
     }
 
-    public static void invoice() {
+    public static void invoice(String userName) {
 
         System.out.println("");
         System.out.println("-------------------Invoice---------------------");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         System.out.println("Date: " + dtf.format(now));
-        
+        System.out.println("Bill to: " + userName);
+
         System.out.println("Item              Quantity          Item Total");
-        
+
         if (BQua != 0) {
             System.out.println("Bumper cars          " + BQua + "                 " + BQua * BPrice);
         }
@@ -188,7 +189,7 @@ public class B9_groub4Project {
         if (DQua != 0) {
             System.out.println("Drop tower           " + DQua + "                 " + DQua * DPrice);
         }
-        
+
         System.out.println("Subtotal: " + total);
         double tax = total * 0.15;
         System.out.println("Tax: " + tax);
