@@ -3,14 +3,16 @@ package b9_groub4project;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.*;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 
 public class B9_groub4Project {
 
     static int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
-    static int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0 ,total = 0;
+    static int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0, total = 0;
+
     public static void main(String[] args) {
 
-        
         boolean flag = true;
 
         while (flag) {
@@ -36,9 +38,11 @@ public class B9_groub4Project {
             } else {
                 selectEvent(select);
             }
-         
+
         }
-        
+
+        selectDate();
+
         Scanner in = new Scanner(System.in);
 
         System.out.print("Enter your name: ");
@@ -46,8 +50,8 @@ public class B9_groub4Project {
 
         String mobileNum = "";
 
-       while (!isCorrectMobile(mobileNum)) {
-            System.out.print("Enter your Mobile Number (must be start with 05): ");
+        while (!isCorrectMobile(mobileNum)) {
+            System.out.print("Enter your Mobile Number (must start with 05): ");
             mobileNum = in.next();
         }
 
@@ -56,10 +60,10 @@ public class B9_groub4Project {
             System.out.print("Enter your Email: ");
             userEmail = in.nextLine();
         }
-        selectDate(); 
+
         price();
         invoice();
-        
+
     }
 
     public static boolean isCorrectMobile(String mobileNum) {
@@ -72,32 +76,34 @@ public class B9_groub4Project {
         Matcher matcher = pattern.matcher(userEmail);
         return matcher.matches();
     }
-public static void selectDate() {
-    Scanner input = new Scanner(System.in);
-    ArrayList<String> dateList = new ArrayList<>();
-    dateList.add("01/03/2023  Wednesday ");
-    dateList.add("02/03/2023  Thursday ");
-    dateList.add("03/03/2023  Friday ");
-    dateList.add("03/03/2023  Saturday ");
-    dateList.add("05/03/2023  Sunday "); 
-    dateList.add("06/03/2023  Monday ");
-    dateList.add("07/03/2023  Tuesday ");
-    System.out.println("Select the date of the event:");
-    for (int i = 0; i < dateList.size(); i++) {
-        System.out.println((i + 1) + ". " + dateList.get(i));
+
+    public static void selectDate() {
+        Scanner input = new Scanner(System.in);
+        ArrayList<String> dateList = new ArrayList<>();
+        dateList.add("01/03/2023  Wednesday ");
+        dateList.add("02/03/2023  Thursday ");
+        dateList.add("03/03/2023  Friday ");
+        dateList.add("03/03/2023  Saturday ");
+        dateList.add("05/03/2023  Sunday ");
+        dateList.add("06/03/2023  Monday ");
+        dateList.add("07/03/2023  Tuesday ");
+        System.out.println("Select the date of the event:");
+        for (int i = 0; i < dateList.size(); i++) {
+            System.out.println((i + 1) + ". " + dateList.get(i));
+        }
+        int selection = input.nextInt();
+        while (selection < 1 || selection > dateList.size()) {
+            System.out.println("Invalid selection. Please choose a valid option.");
+            selection = input.nextInt();
+        }
+        String selectedDate = dateList.get(selection - 1);
+        System.out.println("You selected: " + selectedDate);
     }
-    int selection = input.nextInt();
-    while (selection < 1 || selection > dateList.size()) {
-        System.out.println("Invalid selection. Please choose a valid option.");
-        selection = input.nextInt();
-    }
-    String selectedDate = dateList.get(selection - 1);
-    System.out.println("You selected: " + selectedDate);
-}
+
     public static void selectEvent(String select) {
 
         Scanner input = new Scanner(System.in);
-        
+
         switch (select) {
             case "B":
                 System.out.print("Quantity: ");
@@ -124,50 +130,77 @@ public static void selectDate() {
                     System.out.println("Nothing Selected. See you again.");
                     System.exit(0);
                 }
+            default:
+                System.out.println("Wrong selection!");
         }
     }
-    public static void price(){
-        int price=0;
-        if (BQua != 0 ){
+
+    public static void price() {
+
+        int price = 0;
+
+        if (BQua != 0) {
             price = BQua * BPrice;
-            total+= price;
+            total += price;
         }
-        if (PQua != 0 ){
+        if (PQua != 0) {
             price = PQua * PPrice;
-            total+= price;
+            total += price;
         }
-        if (SQua != 0 ){
+        if (SQua != 0) {
             price = SQua * SPrice;
-            total+= price;
+            total += price;
         }
-        if (GQua != 0 ){
+        if (GQua != 0) {
             price = GQua * GPrice;
-            total+= price;
+            total += price;
         }
-        if (DQua != 0 ){
+        if (DQua != 0) {
             price = DQua * DPrice;
-            total+= price;
+            total += price;
+        } else {
+            total += 0;
         }
-        else {
-            total+= 0;
-        }
-        
-        
+
     }
-    public static void invoice(){
+
+    public static void invoice() {
+
         System.out.println("");
-        System.out.println("-----------------------------------------------");
-        System.out.println("Subtotal: "+ total );
+        System.out.println("-------------------Invoice---------------------");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println("Date: " + dtf.format(now));
+        
+        System.out.println("Item              Quantity          Item Total");
+        
+        if (BQua != 0) {
+            System.out.println("Bumper cars          " + BQua + "                 " + BQua * BPrice);
+        }
+        if (PQua != 0) {
+            System.out.println("Pirate Ship          " + PQua + "                 " + PQua * PPrice);
+        }
+        if (SQua != 0) {
+            System.out.println("Ice skating          " + SQua + "                 " + SQua * SPrice);
+        }
+        if (GQua != 0) {
+            System.out.println("Giant Wheel          " + GQua + "                 " + GQua * GPrice);
+        }
+        if (DQua != 0) {
+            System.out.println("Drop tower           " + DQua + "                 " + DQua * DPrice);
+        }
+        
+        System.out.println("Subtotal: " + total);
         double tax = total * 0.15;
         System.out.println("Tax: " + tax);
-        double totalPrice = total+ tax;
-        System.out.println("Total Price: "+ totalPrice);
+        double totalPrice = total + tax;
+        System.out.println("Total Price: " + totalPrice);
         System.out.println("-----------------------------------------------");
+
     }
+
     public static void generateTicket(String userName) {
-        
-        
-        
+
     }
 
 }
