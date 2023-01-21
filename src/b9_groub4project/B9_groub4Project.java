@@ -65,7 +65,6 @@ public class B9_groub4Project {
         price();
         generateTicket(userName, date);
         invoice(userName);
-        
 
     }
 
@@ -90,18 +89,18 @@ public class B9_groub4Project {
         dateList.add("05/03/2023  Sunday ");
         dateList.add("06/03/2023  Monday ");
         dateList.add("07/03/2023  Tuesday ");
-        System.out.println("Select the date of the event:");
+        System.out.println("\nSelect the date of the event:");
         for (int i = 0; i < dateList.size(); i++) {
             System.out.println((i + 1) + ". " + dateList.get(i));
         }
-        System.out.print("Enter your selection: ");
+        System.out.print("\nEnter your selection: ");
         int selection = input.nextInt();
         while (selection < 1 || selection > dateList.size()) {
             System.out.println("Invalid selection. Please choose a valid option.");
             selection = input.nextInt();
         }
         String selectedDate = dateList.get(selection - 1);
-        System.out.println("You selected: " + selectedDate);
+        System.out.println("You selected: " + selectedDate + "\n");
         return selectedDate;
 
     }
@@ -187,7 +186,7 @@ public class B9_groub4Project {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         System.out.println("Date: " + dtf.format(now));
-        System.out.println("Bill to: " + userName);
+        System.out.println("Bill to: " + userName + "\n");
 
         System.out.println("Item              Quantity          Item Total");
 
@@ -207,7 +206,7 @@ public class B9_groub4Project {
             System.out.println("Drop tower           " + DQua + "                 " + DQua * DPrice);
         }
 
-        System.out.println("Subtotal: " + total);
+        System.out.println("\nSubtotal: " + total);
         double tax = total * 0.15;
         System.out.println("Tax: " + tax);
         double totalPrice = total + tax;
@@ -227,7 +226,7 @@ public class B9_groub4Project {
 
         System.out.println("\n\t\tSTLA WORLD");
         System.out.println("------------------TICKET---------------------");
-        System.out.println("       Date: " + dateNo +"   | "  + day);
+        System.out.println("       Date: " + dateNo + "   | " + day);
         System.out.println("\t     4:00pm - 11:30pm");
         System.out.println("\t TICKET CODE: " + randomNumber1 + "-" + randomNumber2 + "-" + randomNumber3);
         System.out.println("---------------------------------------------");
