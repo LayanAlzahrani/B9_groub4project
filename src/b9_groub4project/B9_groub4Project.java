@@ -58,7 +58,7 @@ public class B9_groub4Project {
         String userEmail = "";
         while (!isCorrectEmail(userEmail)) {
             System.out.print("Enter your Email: ");
-            userEmail = in.nextLine();
+            userEmail = in.next();
         }
 
         price();
