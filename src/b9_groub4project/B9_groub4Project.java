@@ -63,7 +63,7 @@ public class B9_groub4Project {
         }
 
         price();
-        generateTicket(userName, date);
+        generateTicket(date);
         invoice(userName);
 
     }
@@ -216,7 +216,7 @@ public class B9_groub4Project {
 
     }
 
-    public static void generateTicket(String userName, String date) {
+    public static void generateTicket(String date) {
         System.out.println("");
         int randomNumber1 = (int) (Math.random() * 999 + 100);
         int randomNumber2 = (int) (Math.random() * 999 + 100);
