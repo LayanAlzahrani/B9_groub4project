@@ -10,6 +10,7 @@ public class B9_groub4Project {
 
     static int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
     static int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0, total = 0;
+    static int B = 12, P = 20, Da = 5, S = 20, G = 25;
 
     public static void main(String[] args) {
 
@@ -17,18 +18,18 @@ public class B9_groub4Project {
 
         while (flag) {
 
-            System.out.println("-----------------------------------------------");
-            System.out.println("\tWelcome to STLA World");
-            System.out.println("-----------------------------------------------");
+            System.out.println("----------------------------------------------------------");
+            System.out.println("\t\tWelcome to STLA World");
+            System.out.println("----------------------------------------------------------");
 
-            System.out.println("B: Bumper cars          20SR");
-            System.out.println("P: Pirate Ship          15SR");
-            System.out.println("D: Drop tower           25SR");
-            System.out.println("G: Giant Wheel          30SR");
-            System.out.println("S: Ice skating          30SR");
+            System.out.println("B: Bumper cars          20SR          " + B + " Tickets left");
+            System.out.println("P: Pirate Ship          15SR          " + P + " Tickets left");
+            System.out.println("D: Drop tower           25SR          " + Da + " Tickets left");
+            System.out.println("G: Giant Wheel          30SR          " + G + " Tickets left");
+            System.out.println("S: Ice skating          30SR          " + S + " Tickets left");
             System.out.println("E: Confirm and Exit");
 
-            System.out.println("-----------------------------------------------");
+            System.out.println("-----------------------------------------------------------");
             Scanner input = new Scanner(System.in);
             System.out.print("Enter your selection: ");
             String select = input.next().toUpperCase();
@@ -41,7 +42,7 @@ public class B9_groub4Project {
 
         }
 
-        selectDate();
+        String date = selectDate();
 
         Scanner in = new Scanner(System.in);
 
@@ -63,6 +64,7 @@ public class B9_groub4Project {
 
         price();
         invoice(userName);
+        generateTicket(userName, date);
 
     }
 
@@ -77,7 +79,7 @@ public class B9_groub4Project {
         return matcher.matches();
     }
 
-    public static void selectDate() {
+    public static String selectDate() {
         Scanner input = new Scanner(System.in);
         ArrayList<String> dateList = new ArrayList<>();
         dateList.add("01/03/2023  Wednesday ");
@@ -91,6 +93,7 @@ public class B9_groub4Project {
         for (int i = 0; i < dateList.size(); i++) {
             System.out.println((i + 1) + ". " + dateList.get(i));
         }
+        System.out.print("Enter your selection: ");
         int selection = input.nextInt();
         while (selection < 1 || selection > dateList.size()) {
             System.out.println("Invalid selection. Please choose a valid option.");
@@ -98,32 +101,45 @@ public class B9_groub4Project {
         }
         String selectedDate = dateList.get(selection - 1);
         System.out.println("You selected: " + selectedDate);
+        return selectedDate;
+
     }
 
     public static void selectEvent(String select) {
 
         Scanner input = new Scanner(System.in);
+        int QuaTemp;
 
         switch (select) {
             case "B":
                 System.out.print("Quantity: ");
-                BQua += input.nextInt();
+                QuaTemp = input.nextInt();
+                BQua += QuaTemp;
+                B -= QuaTemp;
                 break;
             case "P":
                 System.out.print("Quantity: ");
-                PQua += input.nextInt();
+                QuaTemp = input.nextInt();
+                PQua += QuaTemp;
+                P -= QuaTemp;
                 break;
             case "D":
                 System.out.print("Quantity: ");
-                DQua += input.nextInt();
+                QuaTemp = input.nextInt();
+                DQua += QuaTemp;
+                Da -= QuaTemp;
                 break;
             case "G":
                 System.out.print("Quantity: ");
-                GQua += input.nextInt();
+                QuaTemp = input.nextInt();
+                GQua += QuaTemp;
+                G -= QuaTemp;
                 break;
             case "S":
                 System.out.print("Quantity: ");
-                SQua += input.nextInt();
+                QuaTemp = input.nextInt();
+                SQua += QuaTemp;
+                S -= QuaTemp;
                 break;
             case "E":
                 if (BQua == 0 && PQua == 0 && SQua == 0 && GQua == 0 && DQua == 0) {
@@ -199,7 +215,19 @@ public class B9_groub4Project {
 
     }
 
-    public static void generateTicket(String userName) {
+    public static void generateTicket(String userName, String date) {
+        int randomNumber1 = (int) (Math.random() * 999 + 100);
+        int randomNumber2 = (int) (Math.random() * 999 + 100);
+        int randomNumber3 = (int) (Math.random() * 999 + 100);
+        String dateNo = date.substring(0, 10);
+        String day = date.substring(10);
+
+        System.out.println("\n\t\tSTLA WORLD");
+        System.out.println("------------------TICKET---------------------");
+        System.out.println("    " + day + "\tDate: " + dateNo);
+        System.out.println("\t     4:00pm - 11:30pm");
+        System.out.println("\t TICKET CODE: " + randomNumber1 + "-" + randomNumber2 + "-" + randomNumber3);
+        System.out.println("---------------------------------------------");
 
     }
 
