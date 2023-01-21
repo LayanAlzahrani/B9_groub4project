@@ -29,7 +29,7 @@ public class B9_groub4Project {
             System.out.println("S: Ice skating          30SR          " + S + " Tickets left");
             System.out.println("E: Confirm and Exit");
 
-            System.out.println("-----------------------------------------------------------");
+            System.out.println("----------------------------------------------------------");
             Scanner input = new Scanner(System.in);
             System.out.print("Enter your selection: ");
             String select = input.next().toUpperCase();
@@ -63,8 +63,9 @@ public class B9_groub4Project {
         }
 
         price();
-        invoice(userName);
         generateTicket(userName, date);
+        invoice(userName);
+        
 
     }
 
@@ -182,7 +183,7 @@ public class B9_groub4Project {
     public static void invoice(String userName) {
 
         System.out.println("");
-        System.out.println("-------------------Invoice---------------------");
+        System.out.println("****************** INVOICE ********************");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         System.out.println("Date: " + dtf.format(now));
@@ -211,11 +212,13 @@ public class B9_groub4Project {
         System.out.println("Tax: " + tax);
         double totalPrice = total + tax;
         System.out.println("Total Price: " + totalPrice);
-        System.out.println("-----------------------------------------------");
+        System.out.println("***********************************************");
+        System.out.println("");
 
     }
 
     public static void generateTicket(String userName, String date) {
+        System.out.println("");
         int randomNumber1 = (int) (Math.random() * 999 + 100);
         int randomNumber2 = (int) (Math.random() * 999 + 100);
         int randomNumber3 = (int) (Math.random() * 999 + 100);
@@ -224,10 +227,11 @@ public class B9_groub4Project {
 
         System.out.println("\n\t\tSTLA WORLD");
         System.out.println("------------------TICKET---------------------");
-        System.out.println("    " + day + "\tDate: " + dateNo);
+        System.out.println("       Date: " + dateNo +"   | "  + day);
         System.out.println("\t     4:00pm - 11:30pm");
         System.out.println("\t TICKET CODE: " + randomNumber1 + "-" + randomNumber2 + "-" + randomNumber3);
         System.out.println("---------------------------------------------");
+        System.out.println("");
 
     }
 
