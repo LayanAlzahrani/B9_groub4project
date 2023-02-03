@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 public class B9_groub4Project {
 
-    static int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
+    static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
     static int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0, total = 0;
     static int B = 12, P = 20, Da = 5, S = 20, G = 25;
 
@@ -18,18 +18,8 @@ public class B9_groub4Project {
 
         while (flag) {
 
-            System.out.println("----------------------------------------------------------");
-            System.out.println("\t\tWelcome to STLA World");
-            System.out.println("----------------------------------------------------------");
+            displayWelcomeMessage();
 
-            System.out.println("B: Bumper cars          20SR          " + B + " Tickets left");
-            System.out.println("P: Pirate Ship          15SR          " + P + " Tickets left");
-            System.out.println("D: Drop tower           25SR          " + Da + " Tickets left");
-            System.out.println("G: Giant Wheel          30SR          " + G + " Tickets left");
-            System.out.println("S: Ice skating          30SR          " + S + " Tickets left");
-            System.out.println("E: Confirm and Exit");
-
-            System.out.println("----------------------------------------------------------");
             Scanner input = new Scanner(System.in);
             System.out.print("Enter your selection: ");
             String select = input.next().toUpperCase();
@@ -62,9 +52,26 @@ public class B9_groub4Project {
             userEmail = in.next();
         }
 
-        price();
+        calculatePrice();
         generateTicket(date);
         invoice(userName);
+
+    }
+
+    public static void displayWelcomeMessage() {
+
+        System.out.println("----------------------------------------------------------");
+        System.out.println("\t\tWelcome to STLA World");
+        System.out.println("----------------------------------------------------------");
+
+        System.out.println("B: Bumper cars          20SR          " + B + " Tickets left");
+        System.out.println("P: Pirate Ship          15SR          " + P + " Tickets left");
+        System.out.println("D: Drop tower           25SR          " + Da + " Tickets left");
+        System.out.println("G: Giant Wheel          30SR          " + G + " Tickets left");
+        System.out.println("S: Ice skating          30SR          " + S + " Tickets left");
+        System.out.println("E: Confirm and Exit");
+
+        System.out.println("----------------------------------------------------------");
 
     }
 
@@ -80,7 +87,9 @@ public class B9_groub4Project {
     }
 
     public static String selectDate() {
+
         Scanner input = new Scanner(System.in);
+
         ArrayList<String> dateList = new ArrayList<>();
         dateList.add("01/03/2023  Wednesday ");
         dateList.add("02/03/2023  Thursday ");
@@ -89,6 +98,7 @@ public class B9_groub4Project {
         dateList.add("05/03/2023  Sunday ");
         dateList.add("06/03/2023  Monday ");
         dateList.add("07/03/2023  Tuesday ");
+
         System.out.println("\nSelect the date of the event:");
         for (int i = 0; i < dateList.size(); i++) {
             System.out.println((i + 1) + ". " + dateList.get(i));
@@ -105,77 +115,70 @@ public class B9_groub4Project {
 
     }
 
-  public static void selectEvent(String select) {
-    Scanner input = new Scanner(System.in);
-    int quaTemp;
+    public static void selectEvent(String select) {
+        Scanner input = new Scanner(System.in);
+        int quaTemp;
 
-    switch (select) {
-        case "B":
-            quaTemp = askQuantity(input);
-            BQua += quaTemp;
-            B -= quaTemp;
-            break;
-        case "P":
-            quaTemp = askQuantity(input);
-            PQua += quaTemp;
-            P -= quaTemp;
-            break;
-        case "D":
-            quaTemp = askQuantity(input);
-            DQua += quaTemp;
-            Da -= quaTemp;
-            break;
-        case "G":
-            quaTemp = askQuantity(input);
-            GQua += quaTemp;
-            G -= quaTemp;
-            break;
-        case "S":
-            quaTemp = askQuantity(input);
-            SQua += quaTemp;
-            S -= quaTemp;
-            break;
-        case "E":
-            if (BQua == 0 && PQua == 0 && SQua == 0 && GQua == 0 && DQua == 0) {
-                System.out.println("Nothing Selected. See you again.");
-                System.exit(0);
-            }
-        default:
-            System.out.println("Wrong selection!");
+        switch (select) {
+            case "B":
+                quaTemp = askQuantity(input);
+                BQua += quaTemp;
+                B -= quaTemp;
+                break;
+            case "P":
+                quaTemp = askQuantity(input);
+                PQua += quaTemp;
+                P -= quaTemp;
+                break;
+            case "D":
+                quaTemp = askQuantity(input);
+                DQua += quaTemp;
+                Da -= quaTemp;
+                break;
+            case "G":
+                quaTemp = askQuantity(input);
+                GQua += quaTemp;
+                G -= quaTemp;
+                break;
+            case "S":
+                quaTemp = askQuantity(input);
+                SQua += quaTemp;
+                S -= quaTemp;
+                break;
+            case "E":
+                if (BQua == 0 && PQua == 0 && SQua == 0 && GQua == 0 && DQua == 0) {
+                    System.out.println("Nothing Selected. See you again.");
+                    System.exit(0);
+                }
+            default:
+                System.out.println("Wrong selection!");
+        }
     }
-}
 
-private static int askQuantity(Scanner input) {
-    System.out.print("Quantity: ");
-    return input.nextInt();
-}
+    private static int askQuantity(Scanner input) {
+        System.out.print("Quantity: ");
+        return input.nextInt();
+    }
 
-    public static void price() {
+    public static void calculatePrice() {
 
-        int price = 0;
+        int itemTotal;
 
-        if (BQua != 0) {
-            price = BQua * BPrice;
-            total += price;
-        }
-        if (PQua != 0) {
-            price = PQua * PPrice;
-            total += price;
-        }
-        if (SQua != 0) {
-            price = SQua * SPrice;
-            total += price;
-        }
-        if (GQua != 0) {
-            price = GQua * GPrice;
-            total += price;
-        }
-        if (DQua != 0) {
-            price = DQua * DPrice;
-            total += price;
-        } else {
-            total += 0;
-        }
+        itemTotal = BQua * BPrice;
+        total += itemTotal;
+
+        itemTotal = PQua * PPrice;
+        total += itemTotal;
+
+        itemTotal = SQua * SPrice;
+        total += itemTotal;
+
+        itemTotal = GQua * GPrice;
+        total += itemTotal;
+
+        itemTotal = DQua * DPrice;
+        total += itemTotal;
+
     }
 
     public static void invoice(String userName) {
