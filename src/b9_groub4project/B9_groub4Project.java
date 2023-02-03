@@ -105,51 +105,50 @@ public class B9_groub4Project {
 
     }
 
-    public static void selectEvent(String select) {
+  public static void selectEvent(String select) {
+    Scanner input = new Scanner(System.in);
+    int quaTemp;
 
-        Scanner input = new Scanner(System.in);
-        int QuaTemp;
-
-        switch (select) {
-            case "B":
-                System.out.print("Quantity: ");
-                QuaTemp = input.nextInt();
-                BQua += QuaTemp;
-                B -= QuaTemp;
-                break;
-            case "P":
-                System.out.print("Quantity: ");
-                QuaTemp = input.nextInt();
-                PQua += QuaTemp;
-                P -= QuaTemp;
-                break;
-            case "D":
-                System.out.print("Quantity: ");
-                QuaTemp = input.nextInt();
-                DQua += QuaTemp;
-                Da -= QuaTemp;
-                break;
-            case "G":
-                System.out.print("Quantity: ");
-                QuaTemp = input.nextInt();
-                GQua += QuaTemp;
-                G -= QuaTemp;
-                break;
-            case "S":
-                System.out.print("Quantity: ");
-                QuaTemp = input.nextInt();
-                SQua += QuaTemp;
-                S -= QuaTemp;
-                break;
-            case "E":
-                if (BQua == 0 && PQua == 0 && SQua == 0 && GQua == 0 && DQua == 0) {
-                    System.out.println("Nothing Selected. See you again.");
-                    System.exit(0);
-                }
-            default:
-                System.out.println("Wrong selection!");
-        }
+    switch (select) {
+        case "B":
+            quaTemp = askQuantity(input);
+            BQua += quaTemp;
+            B -= quaTemp;
+            break;
+        case "P":
+            quaTemp = askQuantity(input);
+            PQua += quaTemp;
+            P -= quaTemp;
+            break;
+        case "D":
+            quaTemp = askQuantity(input);
+            DQua += quaTemp;
+            Da -= quaTemp;
+            break;
+        case "G":
+            quaTemp = askQuantity(input);
+            GQua += quaTemp;
+            G -= quaTemp;
+            break;
+        case "S":
+            quaTemp = askQuantity(input);
+            SQua += quaTemp;
+            S -= quaTemp;
+            break;
+        case "E":
+            if (BQua == 0 && PQua == 0 && SQua == 0 && GQua == 0 && DQua == 0) {
+                System.out.println("Nothing Selected. See you again.");
+                System.exit(0);
+            }
+        default:
+            System.out.println("Wrong selection!");
     }
+}
+
+private static int askQuantity(Scanner input) {
+    System.out.print("Quantity: ");
+    return input.nextInt();
+}
 
     public static void price() {
 
