@@ -11,6 +11,7 @@ public class B9_groub4Project {
     static final int BPrice = 20, PPrice = 15, DPrice = 25, GPrice = 30, SPrice = 30;
     static int BQua = 0, PQua = 0, DQua = 0, SQua = 0, GQua = 0, total = 0;
     static int B = 12, P = 20, Da = 5, S = 20, G = 25;
+    static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
 
@@ -18,9 +19,8 @@ public class B9_groub4Project {
 
         while (flag) {
 
-            displayWelcomeMessage();
+            System.out.print(displayWelcomeMessage());
 
-            Scanner input = new Scanner(System.in);
             System.out.print("Enter your selection: ");
             String select = input.next().toUpperCase();
 
@@ -53,25 +53,28 @@ public class B9_groub4Project {
         }
 
         calculatePrice();
-        generateTicket(date);
-        invoice(userName);
+        System.out.println(generateTicket(date));
+        System.out.println(invoice(userName));
 
     }
 
-    public static void displayWelcomeMessage() {
+    public static String displayWelcomeMessage() {
 
-        System.out.println("----------------------------------------------------------");
-        System.out.println("\t\tWelcome to STLA World");
-        System.out.println("----------------------------------------------------------");
+        String WelcomeMsg = "";
 
-        System.out.println("B: Bumper cars          20SR          " + B + " Tickets left");
-        System.out.println("P: Pirate Ship          15SR          " + P + " Tickets left");
-        System.out.println("D: Drop tower           25SR          " + Da + " Tickets left");
-        System.out.println("G: Giant Wheel          30SR          " + G + " Tickets left");
-        System.out.println("S: Ice skating          30SR          " + S + " Tickets left");
-        System.out.println("E: Confirm and Exit");
+        WelcomeMsg += "----------------------------------------------------------\n";
+        WelcomeMsg += "\t\tWelcome to STLA World\n";
+        WelcomeMsg += "----------------------------------------------------------\n";
 
-        System.out.println("----------------------------------------------------------");
+        WelcomeMsg += "B: Bumper cars          20SR          " + B + " Tickets left\n";
+        WelcomeMsg += "P: Pirate Ship          15SR          " + P + " Tickets left\n";
+        WelcomeMsg += "D: Drop tower           25SR          " + Da + " Tickets left\n";
+        WelcomeMsg += "G: Giant Wheel          30SR          " + G + " Tickets left\n";
+        WelcomeMsg += "S: Ice skating          30SR          " + S + " Tickets left\n";
+        WelcomeMsg += "E: Confirm and Exit\n";
+
+        WelcomeMsg += "----------------------------------------------------------\n";
+        return WelcomeMsg;
 
     }
 
@@ -87,8 +90,6 @@ public class B9_groub4Project {
     }
 
     public static String selectDate() {
-
-        Scanner input = new Scanner(System.in);
 
         ArrayList<String> dateList = new ArrayList<>();
         dateList.add("01/03/2023  Wednesday ");
@@ -116,7 +117,6 @@ public class B9_groub4Project {
     }
 
     public static void selectEvent(String select) {
-        Scanner input = new Scanner(System.in);
         int quaTemp;
 
         switch (select) {
@@ -181,59 +181,60 @@ public class B9_groub4Project {
 
     }
 
-    public static void invoice(String userName) {
+    public static String invoice(String userName) {
 
-        System.out.println("");
-        System.out.println("****************** INVOICE ********************");
+        String invoicePrint = "";
+
+        invoicePrint += "\n\n****************** INVOICE ********************";
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        System.out.println("Date: " + dtf.format(now));
-        System.out.println("Bill to: " + userName + "\n");
+        invoicePrint += "\nDate: " + dtf.format(now);
+        invoicePrint += "\nBill to: " + userName + "\n";
 
-        System.out.println("Item              Quantity          Item Total");
+        invoicePrint += "\nItem              Quantity          Item Total";
 
         if (BQua != 0) {
-            System.out.println("Bumper cars          " + BQua + "                 " + BQua * BPrice);
+            invoicePrint += "\nBumper cars          " + BQua + "                 " + BQua * BPrice;
         }
         if (PQua != 0) {
-            System.out.println("Pirate Ship          " + PQua + "                 " + PQua * PPrice);
+            invoicePrint += "\nPirate Ship          " + PQua + "                 " + PQua * PPrice;
         }
         if (SQua != 0) {
-            System.out.println("Ice skating          " + SQua + "                 " + SQua * SPrice);
+            invoicePrint += "\nIce skating          " + SQua + "                 " + SQua * SPrice;
         }
         if (GQua != 0) {
-            System.out.println("Giant Wheel          " + GQua + "                 " + GQua * GPrice);
+            invoicePrint += "\nGiant Wheel          " + GQua + "                 " + GQua * GPrice;
         }
         if (DQua != 0) {
-            System.out.println("Drop tower           " + DQua + "                 " + DQua * DPrice);
+            invoicePrint += "\nDrop tower           " + DQua + "                 " + DQua * DPrice;
         }
 
-        System.out.println("\nSubtotal: " + total);
+        invoicePrint += "\n\nSubtotal: " + total;
         double tax = total * 0.15;
-        System.out.println("Tax: " + tax);
+        invoicePrint += "\nTax: " + tax;
         double totalPrice = total + tax;
-        System.out.println("Total Price: " + totalPrice);
-        System.out.println("***********************************************");
-        System.out.println("");
+        invoicePrint += "\nTotal Price: " + totalPrice;
+        invoicePrint += "\n***********************************************";
+        invoicePrint += "\n";
+        return invoicePrint;
 
     }
 
-    public static void generateTicket(String date) {
-        System.out.println("");
+    public static String generateTicket(String date) {
+        String ticket = "";
         int randomNumber1 = (int) (Math.random() * 999 + 100);
         int randomNumber2 = (int) (Math.random() * 999 + 100);
         int randomNumber3 = (int) (Math.random() * 999 + 100);
         String dateNo = date.substring(0, 10);
         String day = date.substring(10);
 
-        System.out.println("\n\t\tSTLA WORLD");
-        System.out.println("------------------TICKET---------------------");
-        System.out.println("       Date: " + dateNo + "   | " + day);
-        System.out.println("\t     4:00pm - 11:30pm");
-        System.out.println("\t TICKET CODE: " + randomNumber1 + "-" + randomNumber2 + "-" + randomNumber3);
-        System.out.println("---------------------------------------------");
-        System.out.println("");
-
+        ticket += "\n\n\t\tSTLA WORLD\n";
+        ticket += "------------------TICKET---------------------\n";
+        ticket += "       Date: " + dateNo + "   | " + day;
+        ticket += "\n\t     4:00pm - 11:30pm";
+        ticket += "\n\t TICKET CODE: " + randomNumber1 + "-" + randomNumber2 + "-" + randomNumber3;
+        ticket += "\n---------------------------------------------\n\n";
+        return ticket;
     }
 
 }
