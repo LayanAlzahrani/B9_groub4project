@@ -222,9 +222,6 @@ public class B9_groub4Project {
 
     public static String generateTicket(String date) {
         String ticket = "";
-        int randomNumber1 = (int) (Math.random() * 999 + 100);
-        int randomNumber2 = (int) (Math.random() * 999 + 100);
-        int randomNumber3 = (int) (Math.random() * 999 + 100);
         String dateNo = date.substring(0, 10);
         String day = date.substring(10);
 
@@ -232,7 +229,7 @@ public class B9_groub4Project {
         ticket += "------------------TICKET---------------------\n";
         ticket += "       Date: " + dateNo + "   | " + day;
         ticket += "\n\t     4:00pm - 11:30pm";
-        ticket += "\n\t TICKET CODE: " + randomNumber1 + "-" + randomNumber2 + "-" + randomNumber3;
+        ticket += "\n\t TICKET CODE: " + 543 + "-" + 876 + "-" + 001;
         ticket += "\n---------------------------------------------\n\n";
         return ticket;
     }
