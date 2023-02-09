@@ -9,6 +9,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
 
 public class B9_groub4ProjectTest {
 
@@ -82,19 +85,60 @@ public class B9_groub4ProjectTest {
     /**
      * Test of selectDate method, of class B9_groub4Project.
      */
-    @Ignore
     @Test
     public void testSelectDate() {
+        String input = "3\n";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        Scanner sc = new Scanner(in);
 
+        String expected = "03/03/2023  Friday ";
+        String actual = B9_groub4Project.selectDate(sc);
+
+        assertEquals(expected, actual);
     }
 
     /**
      * Test of selectEvent method, of class B9_groub4Project.
      */
-    @Ignore
     @Test
-    public void testSelectEvent() {
+    // testSelectEvent() 
+    public void selectBEventTest() {
+        Scanner input = new Scanner("1\n");
+        B9_groub4Project.selectEvent("B", input);
+        assertEquals(1, B9_groub4Project.BQua);
+        assertEquals(11, B9_groub4Project.B);
+    }
 
+    @Test
+    public void selectPEventTest() {
+        Scanner input = new Scanner("2\n");
+        B9_groub4Project.selectEvent("P", input);
+        assertEquals(2, B9_groub4Project.PQua);
+        assertEquals(18, B9_groub4Project.P);
+    }
+
+    @Test
+    public void selectDEventTest() {
+        Scanner input = new Scanner("3\n");
+        B9_groub4Project.selectEvent("D", input);
+        assertEquals(3, B9_groub4Project.DQua);
+        assertEquals(2, B9_groub4Project.Da);
+    }
+
+    @Test
+    public void selectGEventTest() {
+        Scanner input = new Scanner("4\n");
+        B9_groub4Project.selectEvent("G", input);
+        assertEquals(4, B9_groub4Project.GQua);
+        assertEquals(21, B9_groub4Project.G);
+    }
+
+    @Test
+    public void selectSEventTest() {
+        Scanner input = new Scanner("5\n");
+        B9_groub4Project.selectEvent("S", input);
+        assertEquals(5, B9_groub4Project.SQua);
+        assertEquals(15, B9_groub4Project.S);
     }
 
     /**

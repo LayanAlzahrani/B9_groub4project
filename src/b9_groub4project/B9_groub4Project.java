@@ -16,7 +16,7 @@ public class B9_groub4Project {
     public static void main(String[] args) {
 
         boolean flag = true;
-
+        Scanner in = new Scanner(System.in);
         while (flag) {
 
             System.out.print(displayWelcomeMessage());
@@ -27,14 +27,12 @@ public class B9_groub4Project {
             if (select.equalsIgnoreCase("E")) {
                 flag = false;
             } else {
-                selectEvent(select);
+                selectEvent(select, in);
             }
 
         }
 
-        String date = selectDate();
-
-        Scanner in = new Scanner(System.in);
+        String date = selectDate(in);
 
         System.out.print("Enter your name: ");
         String userName = in.nextLine();
@@ -89,13 +87,13 @@ public class B9_groub4Project {
         return matcher.matches();
     }
 
-    public static String selectDate() {
+    public static String selectDate(Scanner in) {
 
         ArrayList<String> dateList = new ArrayList<>();
         dateList.add("01/03/2023  Wednesday ");
         dateList.add("02/03/2023  Thursday ");
         dateList.add("03/03/2023  Friday ");
-        dateList.add("03/03/2023  Saturday ");
+        dateList.add("04/03/2023  Saturday ");
         dateList.add("05/03/2023  Sunday ");
         dateList.add("06/03/2023  Monday ");
         dateList.add("07/03/2023  Tuesday ");
@@ -105,10 +103,10 @@ public class B9_groub4Project {
             System.out.println((i + 1) + ". " + dateList.get(i));
         }
         System.out.print("\nEnter your selection: ");
-        int selection = input.nextInt();
+        int selection = in.nextInt();
         while (selection < 1 || selection > dateList.size()) {
             System.out.println("Invalid selection. Please choose a valid option.");
-            selection = input.nextInt();
+            selection = in.nextInt();
         }
         String selectedDate = dateList.get(selection - 1);
         System.out.println("You selected: " + selectedDate + "\n");
@@ -116,32 +114,32 @@ public class B9_groub4Project {
 
     }
 
-    public static void selectEvent(String select) {
+    public static void selectEvent(String select, Scanner in) {
         int quaTemp;
 
         switch (select) {
             case "B":
-                quaTemp = askQuantity(input);
+                quaTemp = askQuantity(in);
                 BQua += quaTemp;
                 B -= quaTemp;
                 break;
             case "P":
-                quaTemp = askQuantity(input);
+                quaTemp = askQuantity(in);
                 PQua += quaTemp;
                 P -= quaTemp;
                 break;
             case "D":
-                quaTemp = askQuantity(input);
+                quaTemp = askQuantity(in);
                 DQua += quaTemp;
                 Da -= quaTemp;
                 break;
             case "G":
-                quaTemp = askQuantity(input);
+                quaTemp = askQuantity(in);
                 GQua += quaTemp;
                 G -= quaTemp;
                 break;
             case "S":
-                quaTemp = askQuantity(input);
+                quaTemp = askQuantity(in);
                 SQua += quaTemp;
                 S -= quaTemp;
                 break;
@@ -155,9 +153,9 @@ public class B9_groub4Project {
         }
     }
 
-    private static int askQuantity(Scanner input) {
+    private static int askQuantity(Scanner in) {
         System.out.print("Quantity: ");
-        return input.nextInt();
+        return in.nextInt();
     }
 
     public static void calculatePrice() {
